@@ -1,1 +1,22 @@
-# unity_java_error_passer
+# unity_java_error_parser.exe
+
+## 所需依赖
+~~~
+1.addr2line_breakpad.exe
+~~~
+~~~
+2.字符文件
+~~~
+~~~ 
+3.文本文件 
+~~~
+使用说明
+1.打开软件并根据提示选择对应的文件
+![img.png](img.png)
+2.选择所需的diff值
+![img_1.png](img_1.png)
+3.点击执行，等待结果(速度可能有点慢，请耐心等候)
+![img_2.png](img_2.png)
+4.根据个人需要选择是否复制到剪切板、清楚内容、输出文件。
+# 注：
+选择文本文件时，会在当前目录下生成一个文件名+backtrace的文件，点击生成文件时，在本地路径下生成时间戳+文件名
