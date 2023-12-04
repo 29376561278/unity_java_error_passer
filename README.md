@@ -12,6 +12,8 @@
 ~~~
 使用说明
 1.打开软件并根据提示选择对应的文件
+
+
 Reset your GitHub password
  
 GitHub password reset
