@@ -2,6 +2,9 @@
 
 ## 所需依赖
 ~~~
+mmgui https://github.com/sandin/mmgui.git
+~~~
+~~~
 1.字符文件
 ~~~
 ~~~ 
