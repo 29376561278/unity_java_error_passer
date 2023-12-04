@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mmgui demo</title>
+    <style>
+        @media only screen and (max-width: 480px) {
+        .box {
+            flex-direction: column;
+            height: auto;
+        }
+    
+        #left, #container {
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+    
+    .box {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border: 1px solid rgb(155, 150, 150);
+        box-sizing: border-box;
+        padding: 20px; 
+    }
+    #textarea-field1,#textarea-field2,#textarea-field{
+    text-align:center;
+    }
+    #left {
+        flex: 1;
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        border: 0.5px solid rgb(155, 150, 150);
+        border-right: none;
+    }
+    
+    #left-content{
+        margin-top: 40px;
+        margin-left: 6px;
+    }
+    
+    .input-button {
+        margin-left: 10px;
+    }
+    
+    #content,#content1,#content2{
+            resize: none;
+            width:300px;
+            height:20px;
+            margin-top: 30px;
+            font-size: 16px;
+            padding: 5px;
+        }
+    
+    #unity_diff,#cpp_diff,#sym-buildid{
+        left:-50px;
+        width:300px;
+        height:30px;
+        text-align:center;
+        margin-top: 40px;
+    }
+    #sym-buildid{
+    position: relative;
+    top:-30px;
+    left:1px;
+    width:400px;
+    }
+    #buttom,#buttom1,#buttom2{
+        position: absolute;
+<!--            position: relative;-->
+            font-size:10px;
+            width:65px;
+            height:30px;
+            margin-left:20px;
+            top:110px;
+            left:340px;
+            background-color: #c4c3c1;
+        }
+        #buttom1{
+        top:178px;
+        }
+    #buttom2{
+        top:246px;
+        }
+        textarea {
+        width: 200px;
+        height: 80px;
+        resize: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px;
+    }
+    
+    input[type="button"] {
+        margin-left: 5px;
+        padding: 5px 10px;
+        background-color: #dcdfe6;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    #zhixing {
+        margin-top: 40px;
+        background-color: #d3d7db;
+        display: flex;
+        justify-content: center;
+        font-size: 16px; 
+        padding: 8px 30px;
+    }
+    
+    #container {
+        flex: 2;
+        padding: 10px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        border: 0.5px solid rgb(155, 150, 150);
+    }
+    
+    #container-content {
+        margin-top: 30px;
+        margin-left: 6px; 
+      }
+    
+    .form-group {
+        display: block;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+    
+    #textarea-field,#textarea-field1,#textarea-field2 {
+        width: 100%;
+        resize: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box; 
+        vertical-align: middle;
+    }
+    
+    .item {
+        font-size: 16px;
+        display: inline-block; 
+    }
+    
+    .submit-btn {
+        margin-top: 10px;
+      }
+    #topleft, #topright, #bottomleft {
+        margin-bottom: 10px;
+    }
+    
+    p {
+        margin: 0;
+    }
+    
+    textarea#show_msg {
+        width: 98%;
+        height: 450px;
+        resize: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px;
+        margin-right: 6px;
+    }
+    
+    input[type="button"]#fuzhi, input[type="button"]#qingchu, input[type="button"]#xinjian {
+        margin-top: 10px;
+        background-color: #acabaa;
+        font-size: 14px;
+    }
+    #qingchu,#fuzhi,#xinjian{
+            margin-right:20px;
+            margin-top:10px;
+        }
+
+        #fuzhi:hover, #qingchu:hover, #xinjian:hover {
+        color: rgb(97, 93, 93);
+        background-color: #c4c3c1;
+    }
+
+    #zhixing:hover {
+        color: rgb(97, 93, 93);
+        background-color: #c4c3c1;
+    }
+
+    #zhixing:active {
+        color: rgb(97, 93, 93);
+        background-color: #c4c3c1;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div id="left">
+            <div id="left-content">
+                <textarea type="text"  id="content">addr2line_breakpad.exe工具路径</textarea>
+                <input type="button"  onclick="file()" value="..." id="buttom">
+                <br>
+                <textarea type="text"  id="content1"  >文本文件路径</textarea>
+                <input type="button"  onclick="file1()" value="..." id="buttom1">
+                <br>
+                <textarea type="text"  id="content2"  >符号文件路径</textarea>
+                <input type="button"  onclick="file2()" value="..." id="buttom2">
+                <br>
+                <input type="text" id="sym-buildid" placeholder="符号文件的buildid">
+                <br>
+                <input type="text" id="unity_diff" placeholder="如果有libunity.so请输入unity_diff的值">
+                <br>
+                <input type="text" id="cpp_diff" placeholder="如果有libil2cpp.so请输入cpp_diff的值">
+                <br>
+                <button onclick="recv()" id="zhixing" style="margin-left:auto; margin-right:auto;">执行</button>
+            </div>
+        </div>
+    
+        <div id="container">
+            <div id="container-content">
+                <form>
+                    <div id="topleft">
+                    <label class="item" for="uuid-input">uuid:</label>
+                    <textarea type="text" id="textarea-field" name="uuid" style="width: 420px;height: 30px;"></textarea>
+                    </div>
+                
+                    <div id="topright">
+                    <label class="item" for="app-version-input">appVersionName:</label>
+                    <textarea type="text" id="textarea-field1" name="appVersionName" style="width: 320px;height: 30px;"></textarea>
+                    </div>
+                
+                    <div id="bottomleft">
+                    <label class="item" for="buildid-input">buildid:</label>
+                    <textarea calss="buildid" type="text" id="textarea-field2" name="buildid" style="width: 500px;height: 30px;"></textarea>
+                    </div>
+                </form>
+                <textarea id="show_msg" cols="100" rows="35"></textarea>
+                <br>
+                <input type="button" id="fuzhi" value="复制内容" onclick="copyToClipboard()">
+                <input type="button" id="qingchu" value="清除内容" onclick="clear1()">
+                <input type="button" id="xinjian" value="输出为文件" onclick="create_file()">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+var num = 0
+var data = ""
+function copyToClipboard(){
+ var textarea = document.getElementById("show_msg");
+  textarea.select();
+  document.execCommand("copy");
+}
+function clear1(){
+    document.getElementById("show_msg").innerHTML="";
+}
+function file(){
+    num = 1
+RPC.invoke("judge", {"msg": num}).then((result) => {});
+     window.addEventListener('message', (event) => {
+            var show_msg1 = event.data.msg
+            if (show_msg1.charAt(0) == 1){
+            new_show_msg = show_msg1.substr(1)
+            document.getElementById("content").innerHTML=new_show_msg
+        }
+        });
+
+        }
+function file1(){
+    num = 2
+    RPC.invoke("judge", {"msg": num}).then((result) => {});
+        window.addEventListener('message', (event) => {
+            var show_msg1 = event.data.msg
+            if (show_msg1.charAt(0) == 2){
+            new_show_msg = show_msg1.substr(1)
+            document.getElementById("content1").innerHTML=new_show_msg
+        }
+        });
+        window.addEventListener('message', (event) => {
+            var show_msg2 = event.data.msg
+            if (show_msg2.charAt(0) == 4){
+            new_show_msg1 = show_msg2.substr(1)
+            document.getElementById("textarea-field").innerHTML=new_show_msg1
+            }
+});
+        window.addEventListener('message', (event) => {
+            var show_msg3 = event.data.msg
+            if (show_msg3.charAt(0) == 5){
+            new_show_msg2 = show_msg3.substr(1)
+            document.getElementById("textarea-field1").innerHTML=new_show_msg2
+            }
+        });
+        window.addEventListener('message', (event) => {
+            var show_msg1 = event.data.msg
+            if (show_msg1.charAt(0) == 7){
+            new_show_msg = show_msg1.substr(1)
+            document.getElementById("textarea-field2").innerHTML=new_show_msg
+        }
+        });
+        }
+
+function file2(){
+    num = 3
+RPC.invoke("judge", {"msg": num}).then((result) => {});
+       window.addEventListener('message', (event) => {
+            var show_msg1 = event.data.msg
+            if (show_msg1.charAt(0) == 3){
+            new_show_msg = show_msg1.substr(1)
+            document.getElementById("content2").innerHTML=new_show_msg
+        }
+        });
+            window.addEventListener('message', (event) => {
+            var show_msg2 = event.data.msg
+
+            if (show_msg2.charAt(0) == 8){
+            new_show_msg = show_msg2.substr(1)
+            document.getElementById("sym-buildid").setAttribute('placeholder', new_show_msg)
+        }
+        });
+}
+function create_file(){
+data = "ok"
+RPC.invoke("create_file", {"msg": data}).then((result) => {});
+}
+
+function recv (){
+     var unity_diff =document.getElementById("unity_diff")
+     var cpp_diff = document.getElementById("cpp_diff")
+     var cart = {"id":num,"unity_diff":unity_diff,"cpp_diff":cpp_diff}
+     RPC.invoke("files_info", {"msg": cart}).then((result) => {});
+     window.addEventListener('message', (event) => {
+            var show_msg1 = event.data.msg
+            if (show_msg1.charAt(0) == 6){
+            new_show_msg = show_msg1.substr(1)
+            document.getElementById("show_msg").innerHTML=new_show_msg
+        }
+        });
+}
+
+</script>

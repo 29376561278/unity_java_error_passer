@@ -1,0 +1,13 @@
+{
+    "name": "unity_java_error_parser_cmd",
+    "entry_point": "app:main",
+    "venv": "./venv",
+    "gui": true,
+    "include" : [
+        "asset/unity_java_error_parser.py",
+        "app.py",
+        "__init__.py",
+        "ui",
+        "asset"
+    ]
+}
